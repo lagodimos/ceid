@@ -4,6 +4,11 @@
 #define OPERAND 1
 #define STACK_SIZE 2
 
+typedef struct stack {
+	int sp;
+	int stack[STACK_SIZE];
+} Stack;
+
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 int getOp(char op[]);
 void putInStack(char s[]); // char *s
@@ -116,19 +121,19 @@ void presentResult() {
 	printf("result=%d\n",pop());
 }
 
-int stack[STACK_SIZE];
-int sp=0;
+Stack st1 = {0};
 
 void push(int n) {
-	if(sp>=STACK_SIZE)
+
+	if(st1.sp>=STACK_SIZE)
 		printf("Stack full\n");
 	else
-		stack[sp++]=n;
+		st1.stack[st1.sp++]=n;
 }
 
 int pop() {
-	if(sp==0)
+	if(st1.sp==0)
 		printf("stack empty\n");
 	else
-		return stack[--sp];
+		return st1.stack[--st1.sp];
 }
