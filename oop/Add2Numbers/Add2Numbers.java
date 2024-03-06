@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-class Add2Numbers {
+public class Add2Numbers {
     public static void main(String args[]) {
         Stack<Double> dStack = new Stack<>();
 

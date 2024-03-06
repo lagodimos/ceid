@@ -1,4 +1,4 @@
-class CompareDoubles {
+public class CompareDoubles {
     public static void main(String args[]) {
 
         Double doubleOne = 3.1415d;
