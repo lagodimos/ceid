@@ -13,7 +13,8 @@ public class SquaresApp {
             var lowerLeftPoint = new Point(0, 0);
             var upperRightPoint = new Point(i, i);
 
-            squaresStack.push(new Square(lowerLeftPoint, upperRightPoint));
+            square = new Square(lowerLeftPoint, upperRightPoint);
+            squaresStack.push(square);
         }
 
         System.out.println("Square areas:");
