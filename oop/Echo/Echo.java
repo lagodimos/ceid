@@ -9,6 +9,7 @@ public class Echo {
             System.out.println(input);
         }
 
+        scanner.close();
         System.out.println("bye");
     }
 }
