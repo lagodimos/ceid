@@ -1,11 +1,15 @@
 public class Circle {
-    private double x, y, rad;
+    static int instanceCount = 0;
 
-    public Circle(double x, double y, double rad) {
-        this.x = x;
-        this.y = y;
-        this.rad = rad;
+    public static Circle bigger(Circle circleOne, Circle circleTwo) {
+        return (circleOne.getRadius() > circleTwo.getRadius()) ? circleOne : circleTwo;
     }
+
+    public static Circle smaller(Circle circleOne, Circle circleTwo) {
+        return (circleOne.getRadius() < circleTwo.getRadius()) ? circleOne : circleTwo;
+    }
+
+    private double x, y, rad;
 
     public void setRadius(double rad) {
         this.rad = rad;
@@ -33,5 +37,25 @@ public class Circle {
                       "Circumference: " + this.circumference() + "\n";
 
         return info;
+    }
+
+    public Circle(double x, double y, double rad) {
+        this.x = x;
+        this.y = y;
+        this.rad = rad;
+
+        instanceCount++;
+    }
+
+    public Circle(double rad) {
+        this(0, 0, rad);
+    }
+
+    public Circle() {
+        this(0, 0, 1);
+    }
+
+    protected void finalize() {
+        instanceCount--;
     }
 }
