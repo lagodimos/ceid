@@ -14,7 +14,8 @@ public class RPNCalc {
     }
 
     private static String expression;
-    private static Scanner scanner;
+    private static Scanner inputScanner;
+    private static Scanner expressionScanner;
     private static Integer operand;
     private static InputType inputType;
     private static CalculatorStack stack;
@@ -23,43 +24,50 @@ public class RPNCalc {
 
         stack = new CalculatorStack(50);
 
+        inputScanner = new Scanner(System.in);
+
         System.out.println("\n=== RPN Calculator ===\n");
 
-        expression = getExpression();
-        scanner = new Scanner(expression).useDelimiter(" ");
+        while (inputType != InputType.QUIT) {
 
-        while (scanner.hasNext() && inputType != InputType.QUIT) {
-            inputType = getOp(scanner);
+            expression = getExpression(inputScanner);
+            expressionScanner = new Scanner(expression).useDelimiter(" ");
 
-            switch (inputType) {
-                case OPERAND:
-                    putInStack(operand);
-                    break;
-                case ADDITION:
-                    add();
-                    break;
-                case SUBTRACTION:
-                    sub();
-                    break;
-                case MULTIPLICATION:
-                    mul();
-                    break;
-                case DIVISION:
-                    div();
-                    break;
-                case EVALUATE:
-                    displayResult();
-                    break;
-                case QUIT:
-                    System.out.println("Quitting...");
-                    break;
-                case INVALID:
-                    System.out.println("Invalid input!");
-                    break;
+            while (expressionScanner.hasNext()) {
+                inputType = getOp(expressionScanner);
+
+                switch (inputType) {
+                    case OPERAND:
+                        putInStack(operand);
+                        break;
+                    case ADDITION:
+                        add();
+                        break;
+                    case SUBTRACTION:
+                        sub();
+                        break;
+                    case MULTIPLICATION:
+                        mul();
+                        break;
+                    case DIVISION:
+                        div();
+                        break;
+                    case EVALUATE:
+                        displayResult();
+                        break;
+                    case QUIT:
+                        System.out.println("Quitting...");
+                        break;
+                    case INVALID:
+                        System.out.println("Invalid input!");
+                        break;
+                }
             }
+
+            expressionScanner.close();
         }
 
-        scanner.close();
+        inputScanner.close();
     }
 
     private static InputType getOp(Scanner scanner) {
@@ -115,14 +123,12 @@ public class RPNCalc {
         return isHex;
     }
 
-    private static String getExpression() {
+    private static String getExpression(Scanner scanner) {
         String input;
-        Scanner scanner = new Scanner(System.in);
 
         System.out.print("Expression to evaluate: ");
         input = scanner.nextLine();
-        scanner.close();
-
+    
         return input;
     }
 
