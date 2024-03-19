@@ -202,7 +202,6 @@ public class RPNCalc {
         // Integer num = pop();
         // push(pop() - num);
 
-
         Integer num = stack.pop();
 
         stack.push(stack.pop() - num);
