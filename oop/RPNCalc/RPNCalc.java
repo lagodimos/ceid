@@ -1,6 +1,42 @@
 import java.util.Scanner;
 
+// V1
+//import java.util.Stack;
+
 public class RPNCalc {
+
+    private static class CalculatorStack {
+        private final int stackSize;
+        private int stackPointer;
+        private int[] stack;
+
+        CalculatorStack(int stackSize) {
+            this.stackSize = stackSize;
+            this.stackPointer = 0;
+            this.stack = new int[this.stackSize];
+        }
+
+        public void push(int num) {
+            if (stackPointer <= stackSize) {
+                stack[stackPointer] = num;
+                stackPointer++;
+            }
+            else {
+                System.out.println("Stack overflow!");
+            }
+        }
+
+        public int pop() {
+            if (stackPointer >= 1) {
+                stackPointer--;
+                return stack[stackPointer];
+            }
+            else {
+                System.out.println("Stack underflow!");
+                return 0;
+            }
+        }
+    }
 
     private enum InputType {
         OPERAND,
@@ -20,7 +56,22 @@ public class RPNCalc {
     private static InputType inputType;
     private static CalculatorStack stack;
 
+    // V1
+    // private static Stack<Integer> stack;
+
+    // V2
+    // private static final int stackSize = 50;
+    // private static int stackPointer;
+    // private static int[] stack;
+
     public static void main(String args[]) {
+
+        // V1
+        // stack = new Stack<Integer>();
+
+        // V2
+        // stackPointer = 0;
+        // stack = new int[stackSize];
 
         stack = new CalculatorStack(50);
 
@@ -128,35 +179,59 @@ public class RPNCalc {
 
         System.out.print("Expression to evaluate: ");
         input = scanner.nextLine();
-    
+
         return input;
     }
 
     private static void putInStack(int number) {
+        // V2
+        // push(number);
+
         stack.push(number);
     }
 
     private static void add() {
+        // V2
+        // push(pop() + pop());
+
         stack.push(stack.pop() + stack.pop());
     }
 
     private static void sub() {
+        // V2
+        // Integer num = pop();
+        // push(pop() - num);
+
+
         Integer num = stack.pop();
 
         stack.push(stack.pop() - num);
     }
 
     private static void mul() {
+        // V2
+        // push(pop() * pop());
+
         stack.push(stack.pop() * stack.pop());
     }
 
     private static void div() {
+        // V2
+        // Integer divisor = pop();
+
         Integer divisor = stack.pop();
 
         if (divisor != 0) {
+            // V2
+            // push(pop() / divisor);
+
             stack.push(stack.pop() / divisor);
         }
         else {
+
+            // V2
+            // push(divisor);
+
             stack.push(divisor);
             System.out.println("Invalid operation (division by 0). Operation ignored!");
         }
@@ -164,5 +239,30 @@ public class RPNCalc {
 
     private static void displayResult() {
         System.out.println("Result: " + stack.pop());
+
+        // V2
+        // System.out.println("Result: " + pop());
     }
+
+    // V2
+    // private static void push(int num) {
+    //     if (stackPointer <= stackSize) {
+    //         stack[stackPointer] = num;
+    //         stackPointer++;
+    //     }
+    //     else {
+    //         System.out.println("Stack overflow!");
+    //     }
+    // }
+
+    // private static int pop() {
+    //     if (stackPointer >= 1) {
+    //         stackPointer--;
+    //         return stack[stackPointer];
+    //     }
+    //     else {
+    //         System.out.println("Stack underflow!");
+    //         return 0;
+    //     }
+    // }
 }
