@@ -5,8 +5,9 @@ public class Calc {
     static Stack<Double> stack;
 
     static Adder adder;
-
-    static StackCalc calc;
+    static Subtractor subtractor;
+    static Multiplier multiplier;
+    static Divider divider;
 
     public static void main(String[] args) {
         d1 = Double.valueOf(20);
@@ -28,7 +29,7 @@ public class Calc {
         // V3.3
         stack.push(d1);
         stack.push(d2);
-        adder.operate(stack);
+        Adder.operate(stack);
         System.out.println("Result: " + stack.pop());
 
         // V3.4 / V3.5
@@ -39,22 +40,29 @@ public class Calc {
         System.out.println("Result: " + stack.pop());
 
         // V3.6
-        calc = new StackCalc(stack);
+        adder = new Adder(stack);
+        subtractor = new Subtractor(stack);
+        multiplier = new Multiplier(stack);
+        divider = new Divider(stack);
+
         stack.push(d1);
         stack.push(d2);
-        calc.add();
+        adder.operate();
         System.out.println("Result: " + stack.pop());
+
         stack.push(d1);
         stack.push(d2);
-        calc.sub();
+        subtractor.operate();
         System.out.println("Result: " + stack.pop());
+
         stack.push(d1);
         stack.push(d2);
-        calc.mul();
+        multiplier.operate();
         System.out.println("Result: " + stack.pop());
+
         stack.push(d1);
         stack.push(d2);
-        calc.div();
+        divider.operate();
         System.out.println("Result: " + stack.pop());
     }
 
