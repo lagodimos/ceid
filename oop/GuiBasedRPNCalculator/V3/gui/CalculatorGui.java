@@ -17,11 +17,8 @@ public class CalculatorGui implements ActionListener{
     private JPanel panel;
     private Font font;
 
-    private Operand operand;
-    private Adder adder;
-    private Subtractor subtractor;
-    private Multiplier multiplier;
-    private Divider divider;
+    private OperandIf operand;
+    private Operator adder, subtractor, multiplier, divider;
     private ResultPresenter resultPresenter;
 
     private JButton button0;
@@ -47,11 +44,11 @@ public class CalculatorGui implements ActionListener{
 
     private JTextField textField;
 
-    public CalculatorGui(Operand operand,
-                         Adder adder,
-                         Subtractor subtractor,
-                         Multiplier multiplier,
-                         Divider divider,
+    public CalculatorGui(OperandIf operand,
+                         Operator adder,
+                         Operator subtractor,
+                         Operator multiplier,
+                         Operator divider,
                          ResultPresenter resultPresenter)
     {
         this.operand = operand;

@@ -2,7 +2,7 @@ package engine;
 
 import java.util.Stack;
 
-public class Operand {
+public class Operand implements OperandIf {
     private Stack<Double> stack;
     private String digits;
 
@@ -19,16 +19,6 @@ public class Operand {
         System.out.println(digits);
     }
 
-    public void complete() {
-        if ( !digits.isEmpty() ) {
-            stack.push(Double.valueOf(digits));
-            reset();
-        }
-        else {
-            System.out.println("No number to push to the stack.");
-        }
-    }
-
     public void deleteLastDigit() {
         if ( !digits.isEmpty() ) {
             digits = digits.substring(0, digits.length() - 1);
@@ -36,6 +26,16 @@ public class Operand {
         }
         else {
             System.out.println("There is no digit to erase.");
+        }
+    }
+
+    public void complete() {
+        if ( !digits.isEmpty() ) {
+            stack.push(Double.valueOf(digits));
+            reset();
+        }
+        else {
+            System.out.println("No number to push to the stack.");
         }
     }
 

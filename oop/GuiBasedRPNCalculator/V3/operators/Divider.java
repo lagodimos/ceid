@@ -2,13 +2,12 @@ package operators;
 
 import java.util.Stack;
 
-public class Divider {
-    private Stack<Double> stack;
-
+public class Divider extends Operator {
     public Divider(Stack<Double> stack) {
-        this.stack = stack;
+        super(stack);
     }
 
+    @Override
     public void operate() {
         if (stack.size() >= 2) {
             Double divisor = stack.pop();
