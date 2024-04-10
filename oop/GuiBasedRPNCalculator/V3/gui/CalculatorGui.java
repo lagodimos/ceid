@@ -21,36 +21,23 @@ public class CalculatorGui implements ActionListener{
     private Operator adder, subtractor, multiplier, divider;
     private ResultPresenter resultPresenter;
 
-    private JButton button0;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
-    private JButton button6;
-    private JButton button7;
-    private JButton button8;
-    private JButton button9;
+    private JButton button0, button1, button2, button3, button4,
+                    button5, button6, button7, button8, button9;
 
-    private JButton buttonAdd;
-    private JButton buttonSub;
-    private JButton buttonMul;
-    private JButton buttonDiv;
-    private JButton buttonEquals;
+    private JButton buttonAdd, buttonSub, buttonMul, buttonDiv;
 
-    private JButton buttonEnter;
-    private JButton buttonBackSpace;
-    private JButton buttonClear;
+    private JButton buttonEnter, buttonBackSpace, buttonClear, buttonEquals;
 
     private JTextField textField;
 
-    public CalculatorGui(OperandIf operand,
-                         Operator adder,
-                         Operator subtractor,
-                         Operator multiplier,
-                         Operator divider,
-                         ResultPresenter resultPresenter)
-    {
+    public CalculatorGui (
+        OperandIf operand,
+        Operator adder,
+        Operator subtractor,
+        Operator multiplier,
+        Operator divider,
+        ResultPresenter resultPresenter
+    ) {
         this.operand = operand;
         this.adder = adder;
         this.subtractor =  subtractor;
@@ -66,6 +53,8 @@ public class CalculatorGui implements ActionListener{
         frame.setResizable(false);
 
         panel = new JPanel();
+        panel.setLayout(null);
+        frame.add(panel);
 
         button0 = ComponentCreator.JButton("0", font, this, "0");
         button1 = ComponentCreator.JButton("1", font, this, "1");
@@ -91,8 +80,6 @@ public class CalculatorGui implements ActionListener{
         textField.setFont(font);
         textField.setBounds(10, 10, 260, 40);;
 
-        panel.setLayout(null);
-
         button7.setBounds(10, 60, 40, 40);
         button4.setBounds(10, 110, 40, 40);
         button1.setBounds(10, 160, 40, 40);
@@ -116,27 +103,18 @@ public class CalculatorGui implements ActionListener{
         buttonBackSpace.setBounds(230, 110, 40, 40);
         buttonEquals.setBounds(230, 160, 40, 90);
 
-        panel.add(button0);
-        panel.add(button1);
-        panel.add(button2);
-        panel.add(button3);
-        panel.add(button4);
-        panel.add(button5);
-        panel.add(button6);
-        panel.add(button7);
-        panel.add(button8);
-        panel.add(button9);
-        panel.add(buttonAdd);
-        panel.add(buttonSub);
-        panel.add(buttonMul);
-        panel.add(buttonDiv);
-        panel.add(buttonEnter);
-        panel.add(buttonBackSpace);
-        panel.add(buttonClear);
-        panel.add(buttonEquals);
+        var buttons = new JButton[] {
+            button0, button1, button2, button3, button4, button5, button6, button7, button8, button9,
+            buttonAdd, buttonSub, buttonMul, buttonDiv,
+            buttonEnter, buttonBackSpace, buttonClear, buttonEquals
+        };
+
+        for (JButton jButton : buttons) {
+            panel.add(jButton);
+        }
+
         panel.add(textField);
 
-        frame.add(panel);
         frame.toFront();
         frame.setVisible(true);
     }
@@ -144,35 +122,9 @@ public class CalculatorGui implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case "0":
-                operand.addDigit('0');
-                break;
-            case "1":
-                operand.addDigit('1');
-                break;
-            case "2":
-                operand.addDigit('2');
-                break;
-            case "3":
-                operand.addDigit('3');
-                break;
-            case "4":
-                operand.addDigit('4');
-                break;
-            case "5":
-                operand.addDigit('5');
-                break;
-            case "6":
-                operand.addDigit('6');
-                break;
-            case "7":
-                operand.addDigit('7');
-                break;
-            case "8":
-                operand.addDigit('8');
-                break;
-            case "9":
-                operand.addDigit('9');
+            case "0": case "1": case "2": case "3": case "4":
+            case "5": case "6": case "7": case "8": case "9":
+                operand.addDigit(e.getActionCommand().toCharArray()[0]);
                 break;
             case "add":
                 adder.operate();
