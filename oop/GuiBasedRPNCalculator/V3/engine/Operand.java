@@ -4,24 +4,22 @@ import java.util.Stack;
 
 public class Operand implements OperandIf {
     private Stack<Double> stack;
-    private String digits;
+    private StringBuffer digits;
 
     public Operand(Stack<Double> stack) {
-        digits = "";
+        digits = new StringBuffer();
 
         this.stack = stack;
     }
 
     public void addDigit(char digit) {
-        if (digit != '\0') {
-            digits += digit;
-        }
+        digits.append(digit);
         System.out.println(digits);
     }
 
     public void deleteLastDigit() {
         if ( !digits.isEmpty() ) {
-            digits = digits.substring(0, digits.length() - 1);
+            digits.deleteCharAt(digits.length() - 1);
             System.out.println(digits);
         }
         else {
@@ -31,8 +29,8 @@ public class Operand implements OperandIf {
 
     public void complete() {
         if ( !digits.isEmpty() ) {
-            stack.push(Double.valueOf(digits));
-            reset();
+            stack.push(Double.valueOf(digits.toString()));
+            clearEntry();
         }
         else {
             System.out.println("No number to push to the stack.");
@@ -40,6 +38,11 @@ public class Operand implements OperandIf {
     }
 
     public void reset() {
-        digits = "";
+        clearEntry();
+        stack.removeAllElements();
+    }
+
+    public void clearEntry() {
+        digits.setLength(0);
     }
 }

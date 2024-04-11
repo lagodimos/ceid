@@ -5,4 +5,5 @@ public interface OperandIf {
     public void deleteLastDigit();
     public void complete();
     public void reset();
+    public void clearEntry();
 }

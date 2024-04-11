@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import engine.*;
 import operators.*;
 
-public class CalculatorGui implements ActionListener{
+public class CalculatorGui implements ActionListener {
     private JFrame frame;
     private JPanel panel;
     private Font font;
@@ -26,7 +26,7 @@ public class CalculatorGui implements ActionListener{
 
     private JButton buttonAdd, buttonSub, buttonMul, buttonDiv;
 
-    private JButton buttonEnter, buttonBackSpace, buttonClear, buttonEquals;
+    private JButton buttonEnter, buttonClear, buttonClearEntry, buttonEquals, buttonBackSpace;
 
     private JTextField textField;
 
@@ -71,8 +71,9 @@ public class CalculatorGui implements ActionListener{
         buttonMul = ComponentCreator.JButton("\u00D7", font, this, "mul");
         buttonDiv = ComponentCreator.JButton("\u00F7", font, this, "div");
         buttonEnter = ComponentCreator.JButton("Enter", font, this, "enter");
-        buttonBackSpace = ComponentCreator.JButton("\u232B", font, this, "backspace");
         buttonClear = ComponentCreator.JButton("C", font, this, "clear");
+        buttonClearEntry = ComponentCreator.JButton("CE", font, this, "clear_entry");
+        buttonBackSpace = ComponentCreator.JButton("\u232B", font, this, "backspace");
         buttonEquals = ComponentCreator.JButton("=", font, this, "equals");
 
         textField = new JTextField("0");
@@ -100,13 +101,14 @@ public class CalculatorGui implements ActionListener{
         buttonEnter.setBounds(65, 210, 95, 40);
         //---
         buttonClear.setBounds(230, 60, 40, 40);
-        buttonBackSpace.setBounds(230, 110, 40, 40);
-        buttonEquals.setBounds(230, 160, 40, 90);
+        buttonClearEntry.setBounds(230, 110, 40, 40);
+        buttonBackSpace.setBounds(230, 160, 40, 40);
+        buttonEquals.setBounds(230, 210, 40, 40);
 
         var buttons = new JButton[] {
             button0, button1, button2, button3, button4, button5, button6, button7, button8, button9,
             buttonAdd, buttonSub, buttonMul, buttonDiv,
-            buttonEnter, buttonBackSpace, buttonClear, buttonEquals
+            buttonEnter, buttonClear, buttonClearEntry, buttonEquals, buttonBackSpace
         };
 
         for (JButton jButton : buttons) {
@@ -141,11 +143,14 @@ public class CalculatorGui implements ActionListener{
             case "enter":
                 operand.complete();
                 break;
-            case "backspace":
-                operand.deleteLastDigit();
-                break;
             case "clear":
                 operand.reset();
+                break;
+            case "clear_entry":
+                operand.clearEntry();
+                break;
+            case "backspace":
+                operand.deleteLastDigit();
                 break;
             case "equals":
                 textField.setText(resultPresenter.operate().toString());
