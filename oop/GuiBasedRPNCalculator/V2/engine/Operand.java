@@ -2,25 +2,25 @@ package engine;
 
 import java.util.Stack;
 
-public class Operand {
+public class Operand implements OperandIf {
     private Stack<Double> stack;
-    private StringBuffer digits;
+    private StringBuffer stringBuffer;
 
     public Operand(Stack<Double> stack) {
-        digits = new StringBuffer();
+        stringBuffer = new StringBuffer();
 
         this.stack = stack;
     }
 
     public void addDigit(char digit) {
-        digits.append(digit);
-        System.out.println(digits);
+        stringBuffer.append(digit);
+        System.out.println(stringBuffer);
     }
 
     public void deleteLastDigit() {
-        if ( !digits.isEmpty() ) {
-            digits.deleteCharAt(digits.length() - 1);
-            System.out.println(digits);
+        if (stringBuffer.length() > 0) {
+            stringBuffer.deleteCharAt(stringBuffer.length() - 1);
+            System.out.println(stringBuffer);
         }
         else {
             System.out.println("There is no digit to erase.");
@@ -28,8 +28,8 @@ public class Operand {
     }
 
     public void complete() {
-        if ( !digits.isEmpty() ) {
-            stack.push(Double.valueOf(digits.toString()));
+        if (stringBuffer.length() > 0) {
+            stack.push(Double.valueOf(stringBuffer.toString()));
             clearEntry();
         }
         else {
@@ -43,6 +43,6 @@ public class Operand {
     }
 
     public void clearEntry() {
-        digits.setLength(0);
+        stringBuffer.setLength(0);
     }
 }

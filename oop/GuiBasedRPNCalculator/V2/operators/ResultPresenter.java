@@ -9,7 +9,7 @@ public class ResultPresenter {
         this.stack = stack;
     }
 
-    public Double operate() {
+    public void operate() {
         Double num;
 
         if ( !stack.isEmpty() ) {
@@ -17,9 +17,7 @@ public class ResultPresenter {
             System.out.println(num.toString());
         }
         else {
-            num = 0.0;
             System.out.println("No result available.");
         }
-        return num;
     }
 }
