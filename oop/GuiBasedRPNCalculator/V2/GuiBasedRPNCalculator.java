@@ -1,15 +1,13 @@
 import java.util.Stack;
 
-import operators.*;
-import engine.*;
-
-import gui.*;
-
 public class GuiBasedRPNCalculator {
     private static Stack<Double> stack;
 
     private static Operand operand;
     private static Adder adder;
+    private static Subtracter subtracter;
+    private static Multiplier multiplier;
+    private static Divider divider;
     private static ResultPresenter resultPresenter;
 
     private static CalculatorGui calculator;
@@ -20,7 +18,10 @@ public class GuiBasedRPNCalculator {
 
         operand = new Operand(stack);
         adder = new Adder(stack);
+        subtracter = new Subtracter(stack);
+        multiplier = new Multiplier(stack);
+        divider = new Divider(stack);
         resultPresenter = new ResultPresenter(stack);
-        calculator = new CalculatorGui(operand, adder, resultPresenter);
+        calculator = new CalculatorGui(operand, adder, subtracter, multiplier, divider, resultPresenter);
     }
 }

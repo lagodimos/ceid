@@ -1,5 +1,3 @@
-package engine;
-
 import java.util.Stack;
 
 public class Operand implements OperandIf {

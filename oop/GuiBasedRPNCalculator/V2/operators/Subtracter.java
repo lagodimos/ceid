@@ -1,11 +1,9 @@
-package operators;
-
 import java.util.Stack;
 
-public class Subtractor {
+public class Subtracter {
     private Stack<Double> stack;
 
-    public Subtractor(Stack<Double> stack) {
+    public Subtracter(Stack<Double> stack) {
         this.stack = stack;
     }
 
