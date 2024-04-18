@@ -2,24 +2,20 @@ package operators;
 
 import java.util.Stack;
 
-public class ResultPresenter {
-    private Stack<Double> stack;
-
+public class ResultPresenter extends Operator {
     public ResultPresenter(Stack<Double> stack) {
-        this.stack = stack;
+        super(stack);
     }
 
-    public Double operate() {
+    public void operate() {
         Double num;
 
         if ( !stack.isEmpty() ) {
             num = stack.pop();
-            System.out.println(num.toString());
+            System.out.println(num);
         }
         else {
-            num = 0.0;
             System.out.println("No result available.");
         }
-        return num;
     }
 }
