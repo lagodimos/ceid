@@ -11,7 +11,7 @@ public class CalculatorDisplay extends JTextField {
     static Insets margin = new Insets(0, 0, 0, 0);
 
     public CalculatorDisplay(int bounds[], JPanel panel) {
-        super("0");
+        super("");
         setFont(font);
         setEditable(false);
         setBounds(bounds[0], bounds[1], bounds[2], bounds[3]);

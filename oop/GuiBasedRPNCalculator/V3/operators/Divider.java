@@ -1,6 +1,7 @@
 package operators;
 
 import java.util.Stack;
+import java.util.EmptyStackException;
 
 public class Divider extends Operator {
     public Divider(Stack<Double> stack) {
@@ -9,20 +10,19 @@ public class Divider extends Operator {
 
     @Override
     public void operate() {
-        if (stack.size() >= 2) {
+        try {
             Double divisor = stack.pop();
 
-            if (divisor != 0) {
+            try {
                 stack.push(stack.pop() / divisor);
             }
-            else {
+            catch (ArithmeticException e) {
                 stack.push(divisor);
-                System.out.println("Invalid operation (division by 0). Operation ignored!");
+                System.out.println("Attempted to divide by 0. Operation ignored!");
             }
         }
-        else {
+        catch (EmptyStackException e) {
             System.out.println("Not enough operands for this operation.");
         }
-
     }
 }

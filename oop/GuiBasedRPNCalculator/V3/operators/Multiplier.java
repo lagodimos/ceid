@@ -1,6 +1,7 @@
 package operators;
 
 import java.util.Stack;
+import java.util.EmptyStackException;
 
 public class Multiplier extends Operator {
     public Multiplier(Stack<Double> stack) {
@@ -9,10 +10,10 @@ public class Multiplier extends Operator {
 
     @Override
     public void operate() {
-        if (stack.size() >= 2) {
+        try {
             stack.push(stack.pop() * stack.pop());
         }
-        else {
+        catch (EmptyStackException e) {
             System.out.println("Not enough operands for this operation.");
         }
     }

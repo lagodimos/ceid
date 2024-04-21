@@ -2,9 +2,13 @@ package engine;
 
 import java.util.Stack;
 
+import javax.swing.JTextField;
+
 public class Operand implements OperandIf {
     private Stack<Double> stack;
     private StringBuffer stringBuffer;
+
+    private JTextField display;
 
     public Operand(Stack<Double> stack) {
         stringBuffer = new StringBuffer();
@@ -14,17 +18,18 @@ public class Operand implements OperandIf {
 
     public void addDigit(char digit) {
         stringBuffer.append(digit);
-        System.out.println(stringBuffer);
+        presentResult();
     }
 
     public void deleteLastDigit() {
-        if (stringBuffer.length() > 0) {
+        try {
             stringBuffer.deleteCharAt(stringBuffer.length() - 1);
-            System.out.println(stringBuffer);
         }
-        else {
-            System.out.println("There is no digit to erase.");
+        catch (StringIndexOutOfBoundsException e) {
+            System.out.println("No digit to erase!");
         }
+
+        presentResult();
     }
 
     public void complete() {
@@ -33,8 +38,9 @@ public class Operand implements OperandIf {
             clearEntry();
         }
         else {
-            System.out.println("No number to push to the stack.");
+            System.out.println("No number to push to the stack!");
         }
+        presentResult();
     }
 
     public void reset() {
@@ -44,5 +50,15 @@ public class Operand implements OperandIf {
 
     public void clearEntry() {
         stringBuffer.setLength(0);
+    }
+
+    @Override
+    public void setDisplay(JTextField display) {
+        this.display = display;
+    }
+
+    private void presentResult() {
+        if (stringBuffer.length() > 0) System.out.println(stringBuffer);
+        display.setText( stringBuffer.toString() );
     }
 }

@@ -82,6 +82,7 @@ public class CalculatorGui extends JFrame {
         // Display
 
         display = new CalculatorDisplay(new int[] {10, 10, 260, 40}, panel);
+        operand.setDisplay(display);
 
         // Digit Buttons
 

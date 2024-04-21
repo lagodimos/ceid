@@ -1,6 +1,7 @@
 package operators;
 
 import java.util.Stack;
+import java.util.EmptyStackException;
 
 public class Subtractor extends Operator {
     public Subtractor(Stack<Double> stack) {
@@ -9,11 +10,11 @@ public class Subtractor extends Operator {
 
     @Override
     public void operate() {
-        if (stack.size() >= 2) {
+        try {
             Double num = stack.pop();
             stack.push(stack.pop() - num);
         }
-        else {
+        catch (EmptyStackException e) {
             System.out.println("Not enough operands for this operation.");
         }
     }
