@@ -72,7 +72,7 @@ public class CalculatorGui extends JFrame {
         this.resultPresenter = resultPresenter;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(280,300);
+        setSize(280,260);
         setResizable(false);
 
         panel = new JPanel();
