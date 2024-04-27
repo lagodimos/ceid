@@ -33,7 +33,8 @@ public class TextAnalyzerApp {
         word = console.readLine("Type a word: ");
 
         System.out.println(
-            "\n=== Stats for whole text ===" + "\n" +
+            "\n" +
+            "=== Stats for whole text ===" + "\n" +
 
             "Number of sentences it appears in: " +
             text.getNumOfSentencesContainingWord(word) + "\n" +

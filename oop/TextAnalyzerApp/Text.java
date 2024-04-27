@@ -46,8 +46,8 @@ public class Text {
     }
 
     public int getIdxOfFirstSentenceContainingWord(String word) {
-        return idxOfSentencesContainingWords.get(word) == null ?
-               -1 : idxOfSentencesContainingWords.get(word).get(0);
+        return idxOfSentencesContainingWords.get(word) == null ? -1 :
+               idxOfSentencesContainingWords.get(word).get(0);
     }
 
     public ArrayList<Integer> getMaxOccurrencesSentencesIdxForWord(String word) {
