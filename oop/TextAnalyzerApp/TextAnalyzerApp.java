@@ -62,11 +62,16 @@ public class TextAnalyzerApp {
             System.out.println(
                 "\n" +
                 "Sentence number: " + (i+1) + "\n" +
+
                 "Occurrences in sentence: " + sentences.get(i).getWordOccurrences(word) + "\n" +
-                "Positions in the sentence: " + sentences.get(i).getWordPositions(word)
-                                                    .stream()
-                                                    .map(num -> num + 1)
-                                                    .collect(Collectors.toCollection(ArrayList::new))
+
+                "Positions in the sentence: " +
+                (sentences.get(i).getWordPositions(word).isEmpty() ? "N/A" :
+                    sentences.get(i).getWordPositions(word)
+                        .stream()
+                        .map(num -> num + 1)
+                        .collect(Collectors.toCollection(ArrayList::new))
+                )
             );
         }
     }
