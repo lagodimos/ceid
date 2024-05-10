@@ -1,6 +1,8 @@
-package LogicGates;
+package logic.gates;
 
-import BinarySignal.BinarySignal;
+import java.util.ArrayList;
+
+import binarysignal.BinarySignal;
 
 public class OrGate extends LogicGate {
 
@@ -14,6 +16,10 @@ public class OrGate extends LogicGate {
 
     public OrGate(Integer inputsNum, boolean defaultInputsValue) {
         super(inputsNum, defaultInputsValue);
+    }
+
+    public OrGate(ArrayList<BinarySignal> inputs) {
+        super(inputs);
     }
 
     public OrGate(BinarySignal... inputs) {

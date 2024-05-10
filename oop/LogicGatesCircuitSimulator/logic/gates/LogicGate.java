@@ -1,11 +1,11 @@
-package LogicGates;
+package logic.gates;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-import BinarySignal.BinarySignal;
-import BinarySignal.FixedBinarySignal;
+import binarysignal.BinarySignal;
+import binarysignal.FixedBinarySignal;
 
 public abstract class LogicGate implements BinarySignal {
     protected boolean output;
@@ -38,19 +38,13 @@ public abstract class LogicGate implements BinarySignal {
         calcOutput();
     }
 
-    public boolean getValue() {
-        return output;
+    LogicGate(ArrayList<BinarySignal> inputs) {
+        this(inputs.size());
+        this.setInputs(inputs);
     }
 
-    public void setInput(BinarySignal input, Integer inputIdx) {
-        if (input != null) {
-            inputs.set(inputIdx, input);
-        }
-        else {
-            System.out.println("Cannot set a null BinaryValue as input");
-        }
-
-        calcOutput();
+    public boolean getValue() {
+        return output;
     }
 
     public void setInputs(ArrayList<BinarySignal> inputs) {

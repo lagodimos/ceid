@@ -1,6 +1,8 @@
-package LogicGates;
+package logic.gates;
 
-import BinarySignal.BinarySignal;
+import java.util.ArrayList;
+
+import binarysignal.BinarySignal;
 
 public class AndGate extends LogicGate {
 
@@ -14,6 +16,10 @@ public class AndGate extends LogicGate {
 
     public AndGate(Integer inputsNum, boolean defaultInputsValue) {
         super(inputsNum, defaultInputsValue);
+    }
+
+    public AndGate(ArrayList<BinarySignal> inputs) {
+        super(inputs);
     }
 
     public AndGate(BinarySignal... inputs) {

@@ -1,0 +1,22 @@
+# Illegal names
+# low, l, false, 0
+# high, h, true, 1
+# and their corresponding uppercase strings
+
+# Input Signals
+# name_of_signal value
+
+A HIGH
+B HIGH
+C HIGH
+
+# Logic Gates
+# name_of_logic_gate gate_type input1 input2 ...
+
+L1 AND A B
+L2 AND L1 C
+
+# Output Signals
+# name_of_signal
+
+L2
