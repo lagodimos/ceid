@@ -1,4 +1,4 @@
-# Illegal names
+# Reserved keywords
 # low, l, false, 0
 # high, h, true, 1
 # and their corresponding uppercase strings
