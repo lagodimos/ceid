@@ -7,10 +7,11 @@ public class TextAnalyzerApp {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    private static final String fileName = "TextAnalyzerSampleFile2.txt";
+    private static String fileName = "TextAnalyzerSampleFile2.txt";
 
-    private static TextStats stats;
     private static String textStr;
+    private static Text text;
+    private static TextStats stats;
 
     private static String word;
 
@@ -23,7 +24,8 @@ public class TextAnalyzerApp {
             System.err.println("Cannot read file: " + fileName);
         }
 
-        stats = new TextStats(new Text(textStr));
+        text = new Text(textStr);
+        stats = new TextStats(text);
 
         System.out.print("Type a word: ");
         word = scanner.nextLine();
