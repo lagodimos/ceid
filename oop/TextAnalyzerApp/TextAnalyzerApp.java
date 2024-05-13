@@ -2,14 +2,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.io.Console;
 
 public class TextAnalyzerApp {
 
-    private static Console console;
-
-    private static final String fileName = "TextAnalyzerSampleFile.txt";
+    private static final String fileName = "TextAnalyzerSampleFile2.txt";
 
     private static Text text;
     private static String textStr;
@@ -29,8 +28,9 @@ public class TextAnalyzerApp {
         text = new Text(textStr);
         sentences = text.getSentences();
 
-        console = System.console();
-        word = console.readLine("Type a word: ");
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Type a word: ");
+        word = scanner.nextLine();
 
         System.out.println(
             "\n" +
@@ -74,5 +74,7 @@ public class TextAnalyzerApp {
                 )
             );
         }
+
+        scanner.close();
     }
 }
