@@ -4,11 +4,9 @@ import java.util.stream.Collectors;
 public class TextStats {
 
     private Text text;
-    private ArrayList<Sentence> sentences;
 
     public TextStats(Text text) {
         this.text = text;
-        sentences = text.getSentences();
     }
 
     public void displayAllForWord(String word) {
@@ -17,7 +15,7 @@ public class TextStats {
         displayForWord(word);
 
         System.out.println("\n=== Stats for each sentence ===");
-        for (int i = 0; i < sentences.size(); i++) {
+        for (int i = 0; i < text.getSentences().size(); i++) {
             displayForWordForSentence(word, i);
         }
     }
@@ -48,7 +46,9 @@ public class TextStats {
 
     public void displayForWordForSentence(String word, Integer sentenceIdx) {
 
-        if (sentenceIdx < this.sentences.size()) {
+        ArrayList<Sentence> sentences = text.getSentences();
+
+        if (sentenceIdx < sentences.size()) {
             System.out.println(
                 "\n" +
                 "Sentence number: " + (sentenceIdx+1) + "\n" +
