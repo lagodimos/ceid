@@ -28,8 +28,11 @@ public class TextAnalyzerApp {
         stats = new TextStats(text);
 
         System.out.print("Type a word: ");
+
         word = scanner.nextLine();
         scanner.close();
+
+        System.out.println("\nWord: " + word);
 
         stats.displayAllForWord(word);
     }
