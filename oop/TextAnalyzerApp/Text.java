@@ -90,7 +90,7 @@ public class Text {
 
                 if ((occurrences = sentences.get(i).getWordOccurrences(word)) >= maxOccurrences) {
                     if (occurrences > maxOccurrences) {
-                        maxOccurrencesSentences.put(word, new ArrayList<>());
+                        maxOccurrencesSentences.get(word).clear();
                     }
 
                     maxOccurrences = occurrences;
