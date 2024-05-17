@@ -2,7 +2,7 @@ package logic.gates;
 
 import java.util.ArrayList;
 
-import binarysignal.BinarySignal;
+import binarysignal.BinaryOutputSignal;
 
 public class OrGate extends LogicGate {
 
@@ -18,11 +18,11 @@ public class OrGate extends LogicGate {
         super(inputsNum, defaultInputsValue);
     }
 
-    public OrGate(ArrayList<BinarySignal> inputs) {
+    public OrGate(ArrayList<BinaryOutputSignal> inputs) {
         super(inputs);
     }
 
-    public OrGate(BinarySignal... inputs) {
+    public OrGate(BinaryOutputSignal... inputs) {
         super(inputs);
     }
 

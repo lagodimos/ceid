@@ -2,7 +2,7 @@ package logic.gates;
 
 import java.util.ArrayList;
 
-import binarysignal.BinarySignal;
+import binarysignal.BinaryOutputSignal;
 
 public class NandGate extends LogicGate {
 
@@ -18,11 +18,11 @@ public class NandGate extends LogicGate {
         super(inputsNum, defaultInputsValue);
     }
 
-    public NandGate(ArrayList<BinarySignal> inputs) {
+    public NandGate(ArrayList<BinaryOutputSignal> inputs) {
         super(inputs);
     }
 
-    public NandGate(BinarySignal... inputs) {
+    public NandGate(BinaryOutputSignal... inputs) {
         super(inputs);
     }
 

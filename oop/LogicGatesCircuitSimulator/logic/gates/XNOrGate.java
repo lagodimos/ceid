@@ -2,7 +2,7 @@ package logic.gates;
 
 import java.util.ArrayList;
 
-import binarysignal.BinarySignal;
+import binarysignal.BinaryOutputSignal;
 
 public class XNOrGate extends LogicGate {
 
@@ -18,18 +18,18 @@ public class XNOrGate extends LogicGate {
         super(inputsNum, defaultInputsValue);
     }
 
-    public XNOrGate(ArrayList<BinarySignal> inputs) {
+    public XNOrGate(ArrayList<BinaryOutputSignal> inputs) {
         super(inputs);
     }
 
-    public XNOrGate(BinarySignal... inputs) {
+    public XNOrGate(BinaryOutputSignal... inputs) {
         super(inputs);
     }
 
     public void calcOutput() {
         var value = true;
 
-        for (BinarySignal input: inputs) {
+        for (BinaryOutputSignal input: inputs) {
             if (input.getSignal()) {
                 value = ! value;
             }

@@ -1,6 +1,6 @@
 package logic.gates;
 
-import binarysignal.BinarySignal;
+import binarysignal.BinaryOutputSignal;
 
 public class NotGate extends LogicGate {
 
@@ -12,7 +12,7 @@ public class NotGate extends LogicGate {
         super(1, inputValue);
     }
 
-    public NotGate(BinarySignal input) {
+    public NotGate(BinaryOutputSignal input) {
         super(input);
     }
 

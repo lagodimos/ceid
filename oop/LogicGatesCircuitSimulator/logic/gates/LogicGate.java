@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-import binarysignal.BinarySignal;
-import binarysignal.FixedBinarySignal;
+import binarysignal.BinaryOutputSignal;
+import binarysignal.FixedBinaryOutputSignal;
 
-public abstract class LogicGate implements BinarySignal {
+public abstract class LogicGate implements BinaryOutputSignal {
     protected boolean output;
     protected Integer inputsNum;
-    protected ArrayList<BinarySignal> inputs;
+    protected ArrayList<BinaryOutputSignal> inputs;
 
     public LogicGate(Integer inputsNum) {
         this(inputsNum, false);
@@ -21,13 +21,13 @@ public abstract class LogicGate implements BinarySignal {
         inputs = new ArrayList<>();
 
         for (int i = 0; i < inputsNum; i++) {
-            inputs.add(new FixedBinarySignal(defaultInputsValue));
+            inputs.add(new FixedBinaryOutputSignal(defaultInputsValue));
         }
 
         calcOutput();
     }
 
-    public LogicGate(BinarySignal... inputs) {
+    public LogicGate(BinaryOutputSignal... inputs) {
         this.inputsNum = inputs.length;
         this.inputs = new ArrayList<>();
 
@@ -38,7 +38,7 @@ public abstract class LogicGate implements BinarySignal {
         calcOutput();
     }
 
-    LogicGate(ArrayList<BinarySignal> inputs) {
+    LogicGate(ArrayList<BinaryOutputSignal> inputs) {
         this(inputs.size());
         this.setInputs(inputs);
     }
@@ -47,7 +47,7 @@ public abstract class LogicGate implements BinarySignal {
         return output;
     }
 
-    public void setInputs(ArrayList<BinarySignal> inputs) {
+    public void setInputs(ArrayList<BinaryOutputSignal> inputs) {
         if (
             inputs != null &&
             inputs.size() == inputsNum &&
@@ -62,7 +62,7 @@ public abstract class LogicGate implements BinarySignal {
         calcOutput();
     }
 
-    public void setInputs(BinarySignal... inputs) {
+    public void setInputs(BinaryOutputSignal... inputs) {
         setInputs(new ArrayList<>(Arrays.asList(inputs)));
     }
 

@@ -5,15 +5,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import binarysignal.*;
-import breadboard.Breadboard;
 import logic.gates.*;
 import logic.symbols.LogicSymbols;
 
 public class Circuit {
     private ArrayList< ArrayList<String> > statements;
 
-    private HashMap<String, BinarySignal> elements;
-    private HashMap<String, BinarySignal> outputs;
+    private HashMap<String, BinaryOutputSignal> elements;
+    private HashMap<String, BinaryOutputSignal> outputs;
 
     private enum StatementType {
         INPUT,
@@ -22,8 +21,6 @@ public class Circuit {
     }
 
     public Circuit(String s) {
-        new Breadboard(5, 8);
-
         parseText(s);
         evalStatements();
     }
@@ -58,7 +55,7 @@ public class Circuit {
 
         String gateType;
         ArrayList<String> gateInputSymbols;
-        ArrayList<BinarySignal> gateInputs;
+        ArrayList<BinaryOutputSignal> gateInputs;
 
         for (ArrayList<String> statement: this.statements) {
 
@@ -72,7 +69,7 @@ public class Circuit {
             switch (statementType) {
                 case INPUT:
                     elements.put(elementName,
-                        new FixedBinarySignal(
+                        new FixedBinaryOutputSignal(
                             LogicSymbols.getSymbols(true).contains(
                                 statement.get(1).toLowerCase()
                             )
