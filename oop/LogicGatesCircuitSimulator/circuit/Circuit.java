@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import binarysignal.*;
+import breadboard.Breadboard;
 import logic.gates.*;
 import logic.symbols.LogicSymbols;
 
@@ -21,6 +22,8 @@ public class Circuit {
     }
 
     public Circuit(String s) {
+        new Breadboard(5, 8);
+
         parseText(s);
         evalStatements();
     }
@@ -28,7 +31,7 @@ public class Circuit {
     public void displayOutputs() {
         for (String output: outputs.keySet()) {
             System.out.println();
-            System.out.println(output + " -> " + outputs.get(output).getValue());
+            System.out.println(output + " -> " + outputs.get(output).getSignal());
         }
     }
 

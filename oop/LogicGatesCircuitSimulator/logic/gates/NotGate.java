@@ -17,6 +17,6 @@ public class NotGate extends LogicGate {
     }
 
     public void calcOutput() {
-        setOutput(!inputs.get(0).getValue());
+        setOutput(!inputs.get(0).getSignal());
     }
 }

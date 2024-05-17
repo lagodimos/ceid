@@ -1,5 +1,5 @@
 package binarysignal;
 
 public interface BinarySignal {
-    boolean getValue();
+    boolean getSignal();
 }

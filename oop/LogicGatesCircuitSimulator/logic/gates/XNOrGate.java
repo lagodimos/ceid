@@ -30,7 +30,7 @@ public class XNOrGate extends LogicGate {
         var value = true;
 
         for (BinarySignal input: inputs) {
-            if (input.getValue()) {
+            if (input.getSignal()) {
                 value = ! value;
             }
         }

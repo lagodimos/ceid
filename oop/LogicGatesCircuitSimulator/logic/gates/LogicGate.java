@@ -43,7 +43,7 @@ public abstract class LogicGate implements BinarySignal {
         this.setInputs(inputs);
     }
 
-    public boolean getValue() {
+    public boolean getSignal() {
         return output;
     }
 

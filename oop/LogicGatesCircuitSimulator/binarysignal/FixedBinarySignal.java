@@ -11,11 +11,11 @@ public final class FixedBinarySignal implements BinarySignal {
         this.signal = value;
     }
 
-    public boolean getValue() {
+    public boolean getSignal() {
         return signal;
     }
 
-    public void setSignalValue(boolean value) {
+    public void setSignal(boolean value) {
         this.signal = value;
     }
 }

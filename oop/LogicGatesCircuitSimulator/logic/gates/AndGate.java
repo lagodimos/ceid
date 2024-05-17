@@ -31,7 +31,7 @@ public class AndGate extends LogicGate {
         var i = 0;
 
         while (i < inputsNum && value) {
-            value = inputs.get(i++).getValue();
+            value = inputs.get(i++).getSignal();
         }
 
         setOutput(value);
