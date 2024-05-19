@@ -11,7 +11,6 @@ public class TextAnalyzerApp {
 
     private static String textStr;
     private static Text text;
-    private static TextStats stats;
 
     private static String word;
 
@@ -25,7 +24,6 @@ public class TextAnalyzerApp {
         }
 
         text = new Text(textStr);
-        stats = new TextStats(text);
 
         System.out.print("Type a word: ");
 
@@ -34,6 +32,6 @@ public class TextAnalyzerApp {
 
         System.out.println("\nWord: " + word);
 
-        stats.displayAllForWord(word);
+        text.getStats().displayAllForWord(word);
     }
 }
