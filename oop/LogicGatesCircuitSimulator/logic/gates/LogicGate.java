@@ -44,6 +44,7 @@ public abstract class LogicGate implements BinaryOutputSignal {
     }
 
     public boolean getSignal() {
+        calcOutput();
         return output;
     }
 

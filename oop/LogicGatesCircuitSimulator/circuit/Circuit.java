@@ -2,38 +2,46 @@ package circuit;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Scanner;
 
 import binarysignal.*;
+import breadboard.BreadBoard;
 import logic.gates.*;
 import logic.symbols.LogicSymbols;
 
 public class Circuit {
+    private BreadBoard breadboard;
     private ArrayList< ArrayList<String> > statements;
-
-    private HashMap<String, BinaryOutputSignal> elements;
-    private HashMap<String, BinaryOutputSignal> outputs;
-
-    private enum StatementType {
-        INPUT,
-        GATE,
-        OUTPUT;
-    }
 
     public Circuit(String s) {
         parseText(s);
         evalStatements();
     }
 
+    public void askForInputs(Scanner scanner) {
+        System.out.println("\nInsert inputs:");
+
+        for (int i=1; i<=breadboard.getRows(); i++) {
+            var value = scanner.nextLine().toLowerCase();
+
+            breadboard.setPinSource(i, 1,
+                new FixedBinaryOutputSignal(
+                    LogicSymbols.getSymbols(true).contains(value)
+                )
+            );
+        }
+    }
+
     public void displayOutputs() {
-        for (String output: outputs.keySet()) {
-            System.out.println();
-            System.out.println(output + " -> " + outputs.get(output).getSignal());
+        System.out.println("\nOutputs:");
+        for (int i=1; i<=breadboard.getRows(); i++) {
+            System.out.println(
+                breadboard.getPinSource(i, breadboard.getColumns()).getSignal() ? "HIGH" : "LOW"
+            );
         }
     }
 
     private void parseText(String s) {
-
         statements = new ArrayList< ArrayList<String> >();
 
         for (String line: s.split("\n", 0)) {
@@ -46,92 +54,59 @@ public class Circuit {
     }
 
     private void evalStatements() {
+        for (ArrayList<String> statement: statements) {
+            final var gate_types = Arrays.asList(
+                "not", "and", "nand", "or", "nor", "xor", "xnor"
+            );
 
-        elements = new HashMap<>();
-        outputs = new HashMap<>();
-
-        StatementType statementType;
-        String elementName;
-
-        String gateType;
-        ArrayList<String> gateInputSymbols;
-        ArrayList<BinaryOutputSignal> gateInputs;
-
-        for (ArrayList<String> statement: this.statements) {
-
-            statementType = identifyStatementType(statement);
-            elementName = statement.getFirst();
-
-            if (statementType != StatementType.OUTPUT && elements.containsKey(elementName)) {
-                System.out.println("Name " + elementName + " is used for more than one elements");
+            // BreadBoard
+            if (statement.get(0).toLowerCase().equals("breadboard")) {
+                breadboard = new BreadBoard(
+                    Integer.parseInt(statement.get(1)),
+                    Integer.parseInt(statement.get(2))
+                );
             }
+            // Gate
+            else if (gate_types.contains(statement.get(0).toLowerCase())) {
+                LogicGate gate;
 
-            switch (statementType) {
-                case INPUT:
-                    elements.put(elementName,
-                        new FixedBinaryOutputSignal(
-                            LogicSymbols.getSymbols(true).contains(
-                                statement.get(1).toLowerCase()
-                            )
-                        )
+                switch (statement.get(0).toLowerCase()) {
+                    case "not":
+                        gate = new NotGate();
+                        break;
+                    case "and":
+                        gate = new AndGate();
+                        break;
+                    case "nand":
+                        gate = new NandGate();
+                        break;
+                    case "or":
+                        gate = new OrGate();
+                        break;
+                    case "nor":
+                        gate = new NOrGate();
+                        break;
+                    case "xor":
+                        gate = new XOrGate();
+                        break;
+                    case "xnor":
+                        gate = new XNOrGate();
+                        break;
+                    default:
+                        gate = new NotGate();   // Just to give a default initialization
+                }
+
+                var column = Integer.parseInt(statement.get(1));
+
+                if (!statement.get(0).toLowerCase().equals("not")) {
+                    gate.setInputs(
+                        breadboard.getPinSource(Integer.parseInt(statement.get(2)), column),
+                        breadboard.getPinSource(Integer.parseInt(statement.get(3)), column)
                     );
-                    break;
-                case GATE:
+                }
 
-                    gateInputSymbols = new ArrayList<String>(statement.subList(2, statement.size()));
-                    gateInputs = new ArrayList<>();
-                    gateType = statement.get(1).toLowerCase();
-
-                    for (String inputSymbol: gateInputSymbols) {
-                        gateInputs.add(elements.get(inputSymbol));
-                    }
-
-                    switch (gateType) {
-                        case "not":
-                            elements.put(elementName, new NotGate(gateInputs.get(0)));
-                            break;
-                        case "and":
-                            elements.put(elementName, new AndGate(gateInputs));
-                            break;
-                        case "nand":
-                            elements.put(elementName, new NandGate(gateInputs));
-                            break;
-                        case "or":
-                            elements.put(elementName, new OrGate(gateInputs));
-                            break;
-                        case "nor":
-                            elements.put(elementName, new NOrGate(gateInputs));
-                            break;
-                        case "xor":
-                            elements.put(elementName, new XOrGate(gateInputs));
-                            break;
-                        case "xnor":
-                            elements.put(elementName, new XNOrGate(gateInputs));
-                            break;
-                    }
-
-                    break;
-                case OUTPUT:
-                    outputs.put(elementName, elements.get(elementName));
-                    break;
+                breadboard.setPinSource(Integer.parseInt(statement.get(4)), column + 1, gate);
             }
         }
-    }
-
-    private StatementType identifyStatementType(ArrayList<String> statement) {
-        StatementType type;
-
-        if (statement.size() == 1) {
-            type = StatementType.OUTPUT;
-        }
-        else if (statement.size() == 2 && LogicSymbols.getSymbols().contains(
-                    statement.get(1).toLowerCase()
-                 )
-        ) {
-            type = StatementType.INPUT;
-        }
-        else type = StatementType.GATE;
-
-        return type;
     }
 }

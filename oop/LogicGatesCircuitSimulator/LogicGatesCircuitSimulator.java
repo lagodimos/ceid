@@ -1,22 +1,21 @@
-import java.io.Console;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 import circuit.*;
 
 public class LogicGatesCircuitSimulator {
-    private static Console console;
-
     private static String fileName;
 
     private static String circuitStr;
     private static Circuit circuit;
 
     public static void main(String[] args) {
-        console = System.console();
+        var scanner = new Scanner(System.in);
 
-        fileName = console.readLine("Type the file path of the circuit file: ");
+        System.out.println("Type the file path of the circuit file: ");
+        fileName = scanner.nextLine();
 
         if (fileName.isEmpty()) {
             fileName = "circuit_sample.txt";    // Default file
@@ -31,6 +30,7 @@ public class LogicGatesCircuitSimulator {
         }
 
         circuit = new Circuit(circuitStr);
+        circuit.askForInputs(scanner);
         circuit.displayOutputs();
     }
 }

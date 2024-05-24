@@ -1,0 +1,6 @@
+circuit_sample.txt
+LOW
+HIGH
+LOW
+HIGH
+LOW

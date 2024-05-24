@@ -1,22 +1,11 @@
-# Reserved keywords
-# low, l, false, 0
-# high, h, true, 1
-# and their corresponding uppercase strings
+# BreadBoard Definition
+# BREADBOARD rows columns
 
-# Input Signals
-# name_of_signal value
+BREADBOARD 5 3
 
-A HIGH
-B HIGH
-C HIGH
+# Gates definition
+# gate_type column source_1_connection source_2_connection output_connection_pin
 
-# Logic Gates
-# name_of_logic_gate gate_type input1 input2 ...
-
-L1 AND A B
-L2 AND L1 C
-
-# Output Signals
-# name_of_signal
-
-L2
+OR 1 1 2 1
+OR 1 2 3 2
+AND 2 1 2 3
