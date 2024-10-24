@@ -30,8 +30,10 @@ class answer {
         void writeFile() {
             ofstream outputfile;
             outputfile.open("output.txt");
+
             for (int i = 0; i < numbers.size(); i++) {
-                outputfile << numbers[i] << " "; }
+                outputfile << numbers[i] << endl; }
+
             outputfile.close();
         }
 
