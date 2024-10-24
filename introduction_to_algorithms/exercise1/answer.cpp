@@ -10,6 +10,13 @@ class answer {
     int posOfMinInt = 0;
     int posOfMaxInt = 0;
 
+    void swapInts(int idx1, int idx2) {
+        int temp = numbers[idx1];
+
+        numbers[idx1] = numbers[idx2];
+        numbers[idx2] = temp;
+    }
+
     public:
         void readFile() {
             int current_number;
@@ -55,17 +62,11 @@ class answer {
         }
 
         void swapMinWithSecondToLast() {
-            int temp = numbers[numbers.size() - 2];
-
-            numbers[numbers.size() - 2] = numbers[posOfMinInt];
-            numbers[posOfMinInt] = temp;
+            swapInts(posOfMinInt, numbers.size() - 2);
         }
 
         void swapMaxWithLast() {
-            int temp = numbers[numbers.size() - 1];
-
-            numbers[numbers.size() - 1] = numbers[posOfMaxInt];
-            numbers[posOfMaxInt] = temp;
+            swapInts(posOfMaxInt, numbers.size() - 1);
         }
 };
 
