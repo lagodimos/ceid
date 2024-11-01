@@ -138,7 +138,7 @@ int main() {
     answer myanswer;
     myanswer.readFile();
 
-    // Print initial vecotr state
+    // Print initial vector state
     myanswer.printVector();
 
     for (int i = 0; i < itemsToInsert.size(); i++) {
@@ -148,4 +148,7 @@ int main() {
         // and add another one
         myanswer.insertItem(itemsToInsert[i]);
     }
+
+    // Print final vector state
+    myanswer.printVector();
 }
