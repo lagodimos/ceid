@@ -1,0 +1,46 @@
+# Άσκηση 1
+addi x2, zero, 0x7
+addi x5, zero, 0x73
+addi x6, zero, 0xF38
+
+# Άσκηση 2
+lui x3, 0x00046
+addi x3, x3, 0x800
+
+lui x4, 0xFF001
+addi x4, x4, 0x900
+
+lui x5, 0x00001
+addi x5, x5, 0xF38
+
+# Άσκηση 3
+lui t0, 0x00000
+addi t0, zero, 100
+
+addi t1, zero, 0x0
+sw t1, 0x0(t0)
+
+addi t1, t1, 0x1
+sw t1, 0x4(t0)
+
+addi t1, t1, 0x1
+sw t1, 0x8(t0)
+
+addi t1, t1, 0x1
+sw t1, 0xC(t0)
+
+# Άσκηση 4
+lui t0, 0x00000
+addi t0, zero, 0x10
+
+lui t1, 0x87654
+addi t1, t1, 0x321
+sw t1, 0x0(t0)
+
+lui t1, 0x22222
+addi t1, t1, 0x222
+sw t1, 0x4(t0)
+
+lui t1, 0x33333
+addi t1, t1, 0x333
+sw t1, 0x8(t0)
